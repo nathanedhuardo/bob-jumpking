@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=3 uid="uid://b47gclr00t4lr"]
+
+[ext_resource type="Script" uid="uid://bgt4ha37i1m5t" path="res://scenes/character_body_2d.gd" id="1_g2brh"]
+[ext_resource type="Texture2D" uid="uid://7e867rdlc83k" path="res://assets/new.png" id="3_4vejd"]
+[ext_resource type="Texture2D" uid="uid://bd1431i718blw" path="res://assets/left.png" id="4_4vejd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4dvvg"]
+radius = 6.999998
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn4c7"]
+atlas = ExtResource("3_4vejd")
+region = Rect2(308, 409, 255, 409)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t53lx"]
+atlas = ExtResource("3_4vejd")
+region = Rect2(563, 409, 255, 409)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vejd"]
+atlas = ExtResource("3_4vejd")
+region = Rect2(53, 409, 255, 409)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yi2kj"]
+atlas = ExtResource("4_4vejd")
+region = Rect2(53, 0, 383, 409)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws0vm"]
+atlas = ExtResource("3_4vejd")
+region = Rect2(53, 409, 255, 409)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhr3r"]
+atlas = ExtResource("3_4vejd")
+region = Rect2(53, 0, 255, 409)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t53lx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn4c7")
+}],
+"loop": true,
+"name": &"charge",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t53lx")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vejd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yi2kj")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws0vm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhr3r")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(0, 6)
+script = ExtResource("1_g2brh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(23.000002, 29.000004)
+scale = Vector2(1, 1.0000001)
+shape = SubResource("CapsuleShape2D_4dvvg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(15.999999, 31)
+scale = Vector2(0.09233496, 0.10804488)
+sprite_frames = SubResource("SpriteFrames_t53lx")
+animation = &"jump"
+autoplay = "walk"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.7, 0.7)
